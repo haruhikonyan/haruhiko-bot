@@ -39,6 +39,13 @@ server.post('/webhook', line.middleware(line_config), (req, res, next) => {
                     text: "おっすおれはるひこにゃん"
                 }));
             }
+            else if (event.message.text == "サークルは？") {
+                // replyMessage()で返信し、そのプロミスをevents_processedに追加。
+                events_processed.push(bot.replyMessage(event.replyToken, {
+                    type: "text",
+                    text: "ほじんかい雑誌編集委員会！"
+                }));
+            }
         }
     });
 

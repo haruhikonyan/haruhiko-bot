@@ -46,6 +46,15 @@ server.post('/webhook', line.middleware(line_config), (req, res, next) => {
                     text: "ほじんかい雑誌編集委員会！"
                 }));
             }
+            // 特定文字列に当てはまらなければ語尾に にゃん を付けて返す
+            else {
+                const text = `${event.message.text}にゃん`
+                // replyMessage()で返信し、そのプロミスをevents_processedに追加。
+                events_processed.push(bot.replyMessage(event.replyToken, {
+                    type: "text",
+                    text: text
+                }));
+            }
         }
     });
 
